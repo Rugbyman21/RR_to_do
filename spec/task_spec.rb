@@ -11,9 +11,6 @@ RSpec.configure do |config|
 end
 
 describe(Task) do
-  before() do
-    Task.clear()
-  end
 
   describe("#description") do
     it("lets you give it a description") do
@@ -43,4 +40,14 @@ describe(Task) do
       expect(Task.all()).to(eq([]))
     end
   end
+
+  describe('#==') do
+    it('is the same task if it has the same description') do
+      task1 = Task.new({:description => 'learn SQL'})
+      task2 = Task.new({:description => 'learn SQL'})
+      expect(task1).to(eq(task2))
+    end
+  end
+
+
 end

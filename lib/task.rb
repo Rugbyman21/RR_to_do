@@ -13,6 +13,10 @@ class Task
     @@all_tasks
   end
 
+  define_method(:==) do |another_task|
+    self.description().==(another_task.description())
+  end
+
   define_method(:save) do
     @@all_tasks.push(self)
   end
