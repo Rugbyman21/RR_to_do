@@ -1,5 +1,7 @@
 require('rspec')
 require('to_do_list')
+require('pg')
+
 
 describe(ToDo) do
   before() do
