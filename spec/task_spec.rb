@@ -1,6 +1,7 @@
 require('rspec')
 require('task')
 require('pg')
+require('pry')
 
 DB = PG.connect({:dbname => 'to_do_test'})
 
@@ -14,7 +15,7 @@ describe(Task) do
 
   describe("#description") do
     it("lets you give it a description") do
-      test_task = Task.new("scrub the zebra")
+      test_task = Task.new(:description => "scrub the zebra")
       expect(test_task.description()).to(eq("scrub the zebra"))
     end
   end
@@ -27,7 +28,7 @@ describe(Task) do
 
   describe("#save") do
     it("adds a task to the array of saved tasks") do
-      test_task = Task.new("wash the lion")
+      test_task = Task.new({:description => "learn SQL"})
       test_task.save()
       expect(Task.all()).to(eq([test_task]))
     end
@@ -35,8 +36,9 @@ describe(Task) do
 
   describe(".clear") do
     it("empties out all of the saved tasks") do
-      Task.new("wash the lion").save()
+      Task.new(:description => "wash the lion").save()
       Task.clear()
+      # binding.pry
       expect(Task.all()).to(eq([]))
     end
   end
