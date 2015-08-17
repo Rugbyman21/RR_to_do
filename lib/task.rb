@@ -1,4 +1,4 @@
-class ToDo
+class Task
   @@all_tasks = []
 
   define_method(:initialize) do |description|

@@ -5,9 +5,9 @@ require('launchy')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
-include Capybara::DSL
+# include Capybara::DSL
 
-describe('path for creating and adding to a To Do List') do
+describe('path for creating and adding to a To Do List', {:type => :feature}) do
   it('processes user input and creates list') do
   visit('/')
   fill_in('description', :with => "scrub the zebra")

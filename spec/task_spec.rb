@@ -1,39 +1,46 @@
 require('rspec')
-require('to_do_list')
+require('task')
 require('pg')
 
+DB = PG.connect({:dbname => 'to_do_test'})
 
-describe(ToDo) do
+RSpec.configure do |config|
+  config.after(:each) do
+    DB.exec("DELETE FROM tasks *;")
+  end
+end
+
+describe(Task) do
   before() do
-    ToDo.clear()
+    Task.clear()
   end
 
   describe("#description") do
     it("lets you give it a description") do
-      test_task = ToDo.new("scrub the zebra")
+      test_task = Task.new("scrub the zebra")
       expect(test_task.description()).to(eq("scrub the zebra"))
     end
   end
 
   describe(".all") do
     it("is empty at first") do
-      expect(ToDo.all()).to(eq([]))
+      expect(Task.all()).to(eq([]))
     end
   end
 
   describe("#save") do
     it("adds a task to the array of saved tasks") do
-      test_task = ToDo.new("wash the lion")
+      test_task = Task.new("wash the lion")
       test_task.save()
-      expect(ToDo.all()).to(eq([test_task]))
+      expect(Task.all()).to(eq([test_task]))
     end
   end
 
   describe(".clear") do
     it("empties out all of the saved tasks") do
-      ToDo.new("wash the lion").save()
-      ToDo.clear()
-      expect(ToDo.all()).to(eq([]))
+      Task.new("wash the lion").save()
+      Task.clear()
+      expect(Task.all()).to(eq([]))
     end
   end
 end
