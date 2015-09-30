@@ -1,10 +1,11 @@
+require("sinatra/activerecord")
 require("sinatra")
 require("sinatra/reloader")
 also_reload("lib/**/*.rb")
 require("./lib/task")
 require('pg')
 
-DB = PG.connect({:dbname=> 'to_do'})
+
 
 get("/") do
   @tasks = Task.all()
@@ -14,7 +15,23 @@ end
 
 post("/tasks") do
   description = params.fetch("description")
-  task = Task.new(description)
-  task.save()
-  erb(:success)
+  @task = Task.new({:description => description, :done => false})
+  if @task.save()
+    erb(:success)
+  else
+    erb(:errors)
+  end
+end
+
+get('/tasks/:id/edit') do
+  @task = Task.find(params.fetch("id").to_i())
+  erb(:task_edit)
+end
+
+patch("/tasks/:id") do
+  description = params.fetch("description")
+  @task = Task.find(params.fetch("id").to_i())
+  @task.update({:description => description})
+  @tasks = Task.all()
+  erb(:index)
 end

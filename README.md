@@ -1,8 +1,8 @@
 # To Do List
 
-##### Creates a to do list for user, 8/11/2015
+##### Creates a to do list for user, 9/30/2015
 
-#### By Brigham Thompson & Clinton Herrick
+#### By Trevor Scherling & Clinton Herrick
 
 ## Description
 
@@ -19,12 +19,11 @@ This fantastic web app will create and save a to do list for the user.
 -Rspec
 -Sinatra
 -Capybara
+-ActiveRecord
 
 ### Legal
 
-
-
-Copyright (c) 2015 Clinton Herrick & Brigham Thompson
+Copyright (c) 2015 Trevor Scherling & Clinton Herrick
 
 This software is licensed under the MIT license.
 
