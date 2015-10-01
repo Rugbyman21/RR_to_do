@@ -10,8 +10,13 @@ This fantastic web app will create and save a to do list for the user.
 
 ## Setup
 
--download repository from GitHub
--run "ruby app.rb" in your terminal
+-Download repository from GitHub
+-In terminal, 'bundle' the gems
+-If postgres is not running, type in 'postgres'(in the bash)
+-To get the table working with the app, in the terminal (in the "bash" tag of you terminal), type in 'rake db:create'
+-Then type in 'rake db:migrate'
+-Then type 'rake db:test:prepare'
+-Run "ruby app.rb" in your terminal
 
 ## Technologies Used
 

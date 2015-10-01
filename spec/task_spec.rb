@@ -25,7 +25,12 @@ describe(Task) do
 
   it("ensures the length of description is at most 50 characters") do
     task = Task.new({:description => "a".*(51)})
-    expect(task()).to(eq(false))
+    expect(task.save()).to(eq(false))
+  end
+
+  it("converts the name to lowercase") do
+    task = Task.create({:description => "BUFFALO"})
+    expect(task.description()).to(eq("buffalo"))
   end
 
 
